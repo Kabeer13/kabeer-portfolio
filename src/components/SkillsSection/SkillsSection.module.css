@@ -1,0 +1,148 @@
+/*
+ * SkillsSection — 03 · THE ENGINEERING
+ * Technical skills showcase in a 2×2 grid
+ */
+
+/* ─── Section Shell ─── */
+.section {
+  position: relative;
+  padding: var(--space-5xl) 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+/* ─── Header ─── */
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-lg);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ivory);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-2xl);
+}
+
+/* ─── Ornamental Divider ─── */
+.ornament {
+  height: 1px;
+  margin-bottom: var(--space-3xl);
+  background: linear-gradient(
+    90deg,
+    var(--gold),
+    var(--gold) 40%,
+    transparent 100%
+  );
+  opacity: 0.3;
+  max-width: 320px;
+}
+
+.ornamentDot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.5;
+  transform: translateY(-2px);
+  margin-right: var(--space-sm);
+}
+
+/* ─── Skills Grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ─── Category Card ─── */
+.card {
+  background: var(--surface-elevated);
+  border: 1px solid rgba(198, 161, 91, 0.1);
+  border-top: 3px solid var(--gold);
+  padding: var(--space-xl) var(--space-xl) var(--space-2xl);
+  transition: border-color var(--duration-normal) var(--ease-out-expo),
+              background var(--duration-normal) var(--ease-out-expo);
+}
+
+.card:hover {
+  border-color: rgba(198, 161, 91, 0.2);
+  background: #1a1816;
+}
+
+.cardTitle {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid rgba(198, 161, 91, 0.1);
+}
+
+.skillList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.skillItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--champagne);
+  padding: 0.4em 0.5em;
+  border-radius: 2px;
+  transition: background var(--duration-fast) ease,
+              color var(--duration-fast) ease;
+  cursor: default;
+}
+
+.skillItem:hover {
+  background: rgba(198, 161, 91, 0.08);
+  color: var(--gold-light);
+}
+
+.skillDot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.skillItem:hover .skillDot {
+  opacity: 1;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .skillItem {
+    transition: none;
+  }
+}

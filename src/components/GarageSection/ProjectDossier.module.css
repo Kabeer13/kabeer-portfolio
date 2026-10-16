@@ -1,0 +1,372 @@
+/*
+ * ProjectDossier — Editorial detail panel
+ * Full-viewport modal overlay for project deep-dives
+ */
+
+/* ─── Overlay backdrop ─── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  background: var(--overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ─── Panel container ─── */
+.panel {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--obsidian);
+  border: 1px solid var(--border-gold);
+  border-radius: 2px;
+  box-shadow:
+    0 0 60px rgba(198, 161, 91, 0.08),
+    0 24px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Panel scrollbar */
+.panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.panel::-webkit-scrollbar-track {
+  background: var(--obsidian);
+}
+
+.panel::-webkit-scrollbar-thumb {
+  background: var(--bronze);
+  border-radius: 2px;
+}
+
+/* ─── Close button ─── */
+.closeButton {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: var(--space-md);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  line-height: 1;
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  transition:
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: var(--gold-glow);
+}
+
+/* ─── Content wrapper ─── */
+.content {
+  padding: var(--space-3xl) var(--space-4xl);
+  padding-top: var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Background project number watermark ─── */
+.watermark {
+  position: absolute;
+  top: -0.15em;
+  right: -0.05em;
+  font-family: var(--font-mono);
+  font-size: clamp(10rem, 22vw, 18rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── Header area ─── */
+.header {
+  margin-bottom: var(--space-2xl);
+}
+
+.category {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--border-gold);
+  border-radius: 1px;
+  margin-bottom: var(--space-lg);
+}
+
+.projectNumber {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ivory);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+
+.subtitle {
+  font-family: var(--font-elegant);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--champagne);
+  letter-spacing: 0.03em;
+}
+
+.year {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-top: var(--space-sm);
+}
+
+/* ─── Ornamental gold separator ─── */
+.separator {
+  height: 1px;
+  margin: var(--space-2xl) 0;
+  background: linear-gradient(
+    90deg,
+    var(--gold),
+    var(--gold) 40%,
+    transparent
+  );
+  opacity: 0.35;
+}
+
+/* ─── Section blocks ─── */
+.section {
+  margin-bottom: var(--space-2xl);
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.sectionLabel::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+.descriptionText {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ivory);
+  opacity: 0.85;
+}
+
+.problemText,
+.approachText {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--champagne);
+  opacity: 0.8;
+}
+
+/* ─── Featured badge ─── */
+.featuredBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--obsidian);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  padding: var(--space-xs) var(--space-md);
+  border-radius: 1px;
+  margin-left: var(--space-md);
+}
+
+.featuredStar {
+  font-size: 0.7rem;
+}
+
+/* ─── Technology tags ─── */
+.techGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.techTag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--border-gold);
+  border-radius: 1px;
+  background: transparent;
+  transition: background-color var(--duration-fast) ease;
+}
+
+.techTag:hover {
+  background: var(--gold-glow);
+}
+
+/* ─── Links section ─── */
+.linksRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--obsidian);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  padding: var(--space-sm) var(--space-xl);
+  border: none;
+  border-radius: 2px;
+  text-decoration: none;
+  transition:
+    transform var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+  cursor: pointer;
+}
+
+.linkButton:hover {
+  color: var(--obsidian);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(198, 161, 91, 0.3);
+}
+
+.linkButtonSecondary {
+  composes: linkButton;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+
+.linkButtonSecondary:hover {
+  color: var(--ivory);
+  background: var(--gold-glow);
+  transform: translateY(-2px);
+}
+
+.linkArrow {
+  font-size: 0.9rem;
+  transition: transform var(--duration-fast) ease;
+}
+
+.linkButton:hover .linkArrow {
+  transform: translateX(3px);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .overlay {
+    padding: var(--space-sm);
+    align-items: flex-start;
+  }
+
+  .panel {
+    max-height: 95vh;
+    border-radius: 2px;
+  }
+
+  .content {
+    padding: var(--space-xl) var(--space-lg);
+    padding-top: var(--space-md);
+  }
+
+  .watermark {
+    font-size: 8rem;
+    top: -0.1em;
+    right: -0.1em;
+  }
+
+  .closeButton {
+    width: 40px;
+    height: 40px;
+    margin: var(--space-sm);
+    font-size: 1.25rem;
+  }
+
+  .linksRow {
+    flex-direction: column;
+  }
+
+  .linkButton,
+  .linkButtonSecondary {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: var(--space-lg) var(--space-md);
+    padding-top: var(--space-sm);
+  }
+
+  .watermark {
+    font-size: 6rem;
+  }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .linkButton:hover,
+  .linkButtonSecondary:hover {
+    transform: none;
+  }
+
+  .linkButton:hover .linkArrow {
+    transform: none;
+  }
+}

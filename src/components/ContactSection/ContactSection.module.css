@@ -1,0 +1,194 @@
+/*
+ * ContactSection — 05 THE FINAL SIGNATURE
+ */
+
+.section {
+  padding: var(--space-5xl) 0;
+  padding-bottom: calc(var(--space-5xl) + 2rem);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ─── Section Label ─── */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3xl);
+}
+
+/* ─── Headings ─── */
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  margin-bottom: var(--space-sm);
+}
+
+.subheading {
+  font-family: var(--font-elegant);
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-4xl);
+}
+
+/* ─── Social Link Cards ─── */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: var(--space-4xl);
+}
+
+.linkCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-xl);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-normal) var(--ease-out-expo),
+    background-color var(--duration-fast) ease;
+}
+
+.linkCard:hover {
+  border-color: var(--gold);
+  background: rgba(198, 161, 91, 0.04);
+  color: var(--text-primary);
+}
+
+.linkCard:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.linkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.linkIcon svg {
+  display: block;
+}
+
+.linkText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+}
+
+.linkTitle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.linkSub {
+  font-family: var(--font-elegant);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.arrow {
+  font-size: 1.2rem;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity var(--duration-fast) ease,
+    transform var(--duration-normal) var(--ease-out-expo);
+  flex-shrink: 0;
+}
+
+.linkCard:hover .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── Ornament Line ─── */
+.ornament {
+  width: 100%;
+  max-width: 320px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold) 30%,
+    var(--gold) 70%,
+    transparent
+  );
+  opacity: 0.3;
+  margin-bottom: var(--space-3xl);
+}
+
+/* ─── Footer ─── */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.copyright {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.crafted {
+  font-family: var(--font-elegant);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-4xl) 0;
+    padding-bottom: var(--space-5xl);
+  }
+
+  .linkCard {
+    padding: var(--space-md) var(--space-lg);
+    gap: var(--space-md);
+  }
+
+  .arrow {
+    opacity: 0.4;
+    transform: translateX(0);
+  }
+}

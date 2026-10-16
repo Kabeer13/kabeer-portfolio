@@ -1,0 +1,286 @@
+/*
+ * HeroSection — Pure luxury editorial & interactive baroque emblem
+ * Dominant KABEER typography, original antique-gold classical face emblem,
+ * architectural dark ambience (NO car photo).
+ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--obsidian);
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(32, 26, 18, 0.85) 0%,
+    rgba(18, 15, 12, 0.95) 45%,
+    var(--obsidian) 80%
+  );
+  padding: clamp(70px, 9vh, 90px) var(--content-padding) var(--space-xl);
+}
+
+/* ─── Ambient Architectural Lighting ─── */
+.ambientLighting {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambientLighting::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: clamp(350px, 50vw, 750px);
+  height: clamp(350px, 50vw, 750px);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(198, 161, 91, 0.12) 0%,
+    rgba(198, 161, 91, 0.04) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+}
+
+/* ─── Architectural Grid Background Lines ─── */
+.architecturalLines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    linear-gradient(to right, rgba(198, 161, 91, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(198, 161, 91, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 75%);
+}
+
+/* ─── Top Bar Meta ─── */
+.topBar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.archiveBadge {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.archiveTag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.archiveSub {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.specSheet {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  text-align: right;
+}
+
+.specItem {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* ─── Centerpiece: Classical Face Emblem & Dominant KABEER ─── */
+.centerpiece {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: auto 0;
+  padding: var(--space-md) 0;
+}
+
+/* Classical Antique-Gold Baroque Emblem */
+.emblemContainer {
+  position: relative;
+  width: clamp(140px, 18vw, 210px);
+  height: clamp(140px, 18vw, 210px);
+  margin-bottom: clamp(1rem, 2.5vh, 2rem);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.4s var(--ease-out-expo), filter 0.4s ease;
+  will-change: transform;
+}
+
+.emblemContainer:hover {
+  filter: drop-shadow(0 0 24px rgba(198, 161, 91, 0.45));
+}
+
+.emblemSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ─── Massive Dominant Typography ─── */
+.nameHeading {
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 16vw, 13rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+  background: linear-gradient(
+    135deg,
+    #FFFFFF 0%,
+    var(--ivory) 15%,
+    var(--gold-light) 40%,
+    var(--gold) 65%,
+    var(--gold-dark) 85%,
+    var(--champagne) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(198, 161, 91, 0.15);
+  user-select: none;
+}
+
+.subtitle {
+  font-family: var(--font-elegant);
+  font-size: clamp(1.1rem, 2.6vw, 1.85rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--champagne);
+  letter-spacing: 0.08em;
+  margin-top: clamp(0.75rem, 1.8vh, 1.5rem);
+  opacity: 0.9;
+}
+
+.curatorNote {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.75;
+  margin-top: clamp(0.5rem, 1.2vh, 1rem);
+}
+
+/* ─── Bottom Navigation / Scroll ─── */
+.bottomBar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--space-md);
+}
+
+.exploreCta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color var(--duration-fast) ease;
+}
+
+.exploreCta:hover {
+  color: var(--gold);
+}
+
+.exploreText {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.chevron {
+  width: 14px;
+  height: 14px;
+  border-right: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.6;
+  animation: bounceDown 2s ease-in-out infinite;
+}
+
+@keyframes bounceDown {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: rotate(45deg) translateY(4px);
+    opacity: 0.95;
+  }
+}
+
+/* ─── Responsive Media Queries ─── */
+@media (max-width: 768px) {
+  .hero {
+    padding: clamp(65px, 8vh, 80px) var(--content-padding) var(--space-lg);
+  }
+
+  .topBar {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+
+  .specSheet {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .emblemContainer {
+    width: clamp(120px, 32vw, 160px);
+    height: clamp(120px, 32vw, 160px);
+    margin-bottom: var(--space-sm);
+  }
+
+  .nameHeading {
+    font-size: clamp(3rem, 18vw, 5.5rem);
+    letter-spacing: 0.02em;
+  }
+
+  .subtitle {
+    font-size: clamp(0.95rem, 3.8vw, 1.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chevron {
+    animation: none;
+    opacity: 0.7;
+  }
+  .emblemContainer {
+    transition: none;
+  }
+}

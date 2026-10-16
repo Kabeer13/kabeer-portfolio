@@ -1,0 +1,255 @@
+/*
+ * AUREO — The Private Collection
+ * Global Design System
+ */
+
+/* ─── CSS Custom Properties ─── */
+:root {
+  /* Core palette */
+  --obsidian: #090807;
+  --obsidian-light: #121110;
+  --obsidian-mid: #1a1816;
+  --gold: #C6A15B;
+  --gold-light: #D4B574;
+  --gold-dark: #A88842;
+  --champagne: #E8D2A2;
+  --ivory: #F0E9DB;
+  --bronze: #574025;
+  --crimson: #701D20;
+  --crimson-light: #8a2328;
+
+  /* Functional colors */
+  --gold-glow: rgba(198, 161, 91, 0.15);
+  --gold-glow-strong: rgba(198, 161, 91, 0.3);
+  --text-primary: #F0E9DB;
+  --text-secondary: #E8D2A2;
+  --text-muted: rgba(232, 210, 162, 0.5);
+  --border-subtle: rgba(198, 161, 91, 0.12);
+  --border-gold: rgba(198, 161, 91, 0.3);
+  --surface: #0f0e0d;
+  --surface-elevated: #161412;
+  --overlay: rgba(9, 8, 7, 0.85);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-elegant: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+
+  /* Layout */
+  --max-width: 1400px;
+  --content-padding: clamp(1rem, 4vw, 3rem);
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  --duration-cinematic: 1200ms;
+
+  /* Z-index layers */
+  --z-base: 1;
+  --z-ornament: 5;
+  --z-content: 10;
+  --z-nav: 100;
+  --z-modal: 200;
+  --z-overlay: 300;
+}
+
+/* ─── Reset & Base ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--obsidian);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+
+a:hover {
+  color: var(--gold-light);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Hide focus ring for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--gold);
+  color: var(--obsidian);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bronze);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* ─── Utility Classes ─── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Typography Utilities ─── */
+.heading-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+}
+
+.heading-elegant {
+  font-family: var(--font-elegant);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  color: var(--champagne);
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.text-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ─── Gold gradient text ─── */
+.gold-text {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Ornamental Line ─── */
+.ornamental-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold) 20%,
+    var(--gold) 80%,
+    transparent
+  );
+  opacity: 0.3;
+}

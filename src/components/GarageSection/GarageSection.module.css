@@ -1,0 +1,565 @@
+/*
+ * GarageSection — Architectural Miniature Garage Bays
+ * Features black industrial metal shutter doors, antique-gold chain hoists,
+ * engraved brass number plates, and interior spotlight reveal.
+ */
+
+.section {
+  padding: var(--space-5xl) 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+/* ─── Header ─── */
+.header {
+  margin-bottom: var(--space-3xl);
+}
+
+.sectionTag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-md);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--ivory);
+  letter-spacing: -0.02em;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-elegant);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-style: italic;
+  color: var(--champagne);
+  opacity: 0.8;
+  max-width: 650px;
+  margin-top: var(--space-md);
+  line-height: 1.5;
+}
+
+/* ─── Controls Row (Search + Filters) ─── */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.searchWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: var(--space-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  padding-left: calc(var(--space-lg) + 1.5rem);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ivory);
+  background: rgba(18, 16, 14, 0.75);
+  border: 1px solid var(--border-gold);
+  border-radius: 2px;
+  outline: none;
+  transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+  font-family: var(--font-elegant);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.searchInput:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
+/* ─── Category Filters ─── */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.filterButton {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: var(--space-xs) var(--space-lg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  background: transparent;
+  cursor: pointer;
+  transition: color var(--duration-fast) ease, border-color var(--duration-fast) ease, background-color var(--duration-fast) ease;
+}
+
+.filterButton:hover {
+  color: var(--champagne);
+  border-color: var(--border-gold);
+}
+
+.filterButtonActive {
+  composes: filterButton;
+  color: var(--obsidian);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
+/* ─── Catalogue Meta ─── */
+.catalogueMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.resultsCount {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.systemStatus {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+/* ─── Project Grid of Miniature Garages ─── */
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2xl);
+}
+
+/* ─── Single Garage Bay Unit ─── */
+.garageBay {
+  position: relative;
+  background: #0D0C0B;
+  border: 1px solid rgba(198, 161, 91, 0.25);
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+              box-shadow var(--duration-normal) var(--ease-out-expo),
+              border-color var(--duration-fast) ease;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+}
+
+.garageBay:hover,
+.garageBay:focus-visible {
+  border-color: var(--gold);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.8), 0 0 20px rgba(198, 161, 91, 0.2);
+  transform: translateY(-4px);
+}
+
+/* ─── Bay Header / Heavy Steel Beam with Antique Gold Chains ─── */
+.bayHeaderBeam {
+  background: linear-gradient(180deg, #1A1714 0%, #110F0D 100%);
+  border-bottom: 2px solid var(--gold);
+  padding: var(--space-sm) var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.chainHoistHanger {
+  display: flex;
+  gap: 3px;
+  opacity: 0.75;
+}
+
+.chainLink {
+  width: 6px;
+  height: 12px;
+  border: 1.5px solid var(--gold);
+  border-radius: 3px;
+  display: inline-block;
+  background: #090807;
+}
+
+.engravedPlate {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #261F16, #14110D);
+  padding: 3px 12px;
+  border: 1px solid var(--gold);
+  border-radius: 1px;
+}
+
+.engravedLabel {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: var(--champagne);
+}
+
+.engravedNumber {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold-light);
+}
+
+/* ─── Garage Portal Frame & Door System ─── */
+.garagePortal {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background: #070706;
+}
+
+/* ─── Interior Chamber (Behind Door) ─── */
+.chamberInterior {
+  position: absolute;
+  inset: 0;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: radial-gradient(circle at 50% 20%, rgba(35, 30, 22, 0.95), #080706 85%);
+  z-index: 1;
+}
+
+.interiorSpotlight {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 180px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(240, 233, 219, 0.22) 0%, rgba(198, 161, 91, 0.08) 50%, transparent 80%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.interiorData {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.interiorBadge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--space-xs);
+}
+
+.specIcon {
+  color: var(--gold-light);
+  font-size: 0.7rem;
+}
+
+.interiorTitle {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ivory);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.interiorSubtitle {
+  font-family: var(--font-elegant);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--champagne);
+  opacity: 0.85;
+  margin-bottom: var(--space-sm);
+}
+
+.interiorDescription {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(240, 233, 219, 0.7);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: auto;
+}
+
+.interiorTechRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: var(--space-sm) 0;
+}
+
+.interiorTechBadge {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 7px;
+  border: 1px solid rgba(198, 161, 91, 0.2);
+  border-radius: 1px;
+}
+
+.interiorActions {
+  padding-top: var(--space-xs);
+  border-top: 1px solid rgba(198, 161, 91, 0.15);
+}
+
+.dossierPrompt {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ─── Rolling Black Metal Garage Door (The Shutter) ─── */
+.garageDoor {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: #11100F;
+  background-image: repeating-linear-gradient(
+    180deg,
+    #141312 0px,
+    #141312 36px,
+    #090807 36px,
+    #090807 38px
+  );
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.garageBay:hover .garageDoor {
+  transform: translateY(-24px); /* Peek preview on hover */
+}
+
+.garageDoor.doorLifted,
+.bayOpen .garageDoor {
+  transform: translateY(-90%) !important; /* Shutter lifts to top roll */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+}
+
+.slatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.slat {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  position: relative;
+}
+
+.rivet {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold-dark);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  opacity: 0.6;
+}
+
+.doorEmblem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.doorNumberText {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.doorLockMechanism {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+}
+
+.doorTitlePreview {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ivory);
+  letter-spacing: 0.02em;
+  text-align: center;
+  width: 100%;
+}
+
+.doorLiftInstruction {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-light);
+  text-align: center;
+  width: 100%;
+  opacity: 0.7;
+}
+
+.doorBottomLip {
+  height: 12px;
+  background: linear-gradient(180deg, var(--gold-dark), #382B14);
+  border-top: 1px solid var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lipHandle {
+  width: 60px;
+  height: 3px;
+  background: var(--obsidian);
+  border-radius: 2px;
+}
+
+/* ─── Threshold / Foundation Strip ─── */
+.bayThreshold {
+  background: #110F0D;
+  border-top: 1px solid rgba(198, 161, 91, 0.2);
+  padding: 8px var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 5;
+}
+
+.warningStripe {
+  width: 18px;
+  height: 5px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--gold) 0px,
+    var(--gold) 3px,
+    #090807 3px,
+    #090807 6px
+  );
+  opacity: 0.7;
+}
+
+.bayFootprint {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+}
+
+.flagshipTag {
+  color: var(--obsidian);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  padding: 1px 6px;
+  font-weight: 700;
+  border-radius: 1px;
+}
+
+/* ─── Empty State ─── */
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--space-4xl) var(--space-xl);
+}
+
+.emptyIcon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-lg);
+  opacity: 0.3;
+}
+
+.emptyText {
+  font-family: var(--font-elegant);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* ─── Responsive Media Queries ─── */
+@media (max-width: 900px) {
+  .projectGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  .garagePortal {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .garagePortal {
+    height: 280px;
+  }
+  .interiorTitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .garageBay:hover .garageDoor {
+    transform: none;
+  }
+  .garageDoor.doorLifted,
+  .bayOpen .garageDoor {
+    transform: translateY(-90%) !important;
+    transition: none;
+  }
+}
