@@ -56,14 +56,14 @@ const siteConfig: SiteConfig = {
     title: 'Developer & Engineer',
     github: 'https://github.com/Kabeer13',
     githubUsername: 'Kabeer13',
-    email: '', // Add your email
-    location: 'Australia',
-    university: '', // Add your university name
-    degree: 'Computer Science',
+    email: 'kabeerbilal13@gmail.com', // Add your email
+    location: 'Bombay',
+    university: 'NMIMS', // Add your university name
+    degree: 'Data Science',
     bio: [
       'I build things that work — from full-stack web applications to machine learning pipelines and mobile apps.',
       'I\'m drawn to projects that sit at the intersection of engineering precision and real-world impact. Whether it\'s a number plate recognition system or an Android fitness tracker, I care about the craft behind the code.',
-      'Currently studying Computer Science and sharpening my skills across Python, Java, React, and cloud deployment.',
+      'Currently studying Data Science and sharpening my skills across Python, Java, React, and cloud deployment.',
     ],
     interests: [
       'Software Engineering',
