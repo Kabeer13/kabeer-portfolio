@@ -1,48 +1,30 @@
-# Kabeer — Private Archive 001
+# KABEER® — Private Archive 001
 
-A custom, responsive personal portfolio combining Italian luxury-editorial art direction, original gold chain / baroque corner ornaments, automotive concept imagery, and an interactive GitHub project archive.
+A responsive personal portfolio that blends automotive concept imagery, baroque gold chain corner ornaments, editorial typography and an interactive GitHub project archive.
 
 ## Features
+- Responsive layout for desktop, tablet and phone
+- Original baroque / chain-inspired gold cornerwork
+- Cinematic automotive hero art and Kabeer's portrait
+- Working mobile navigation, scroll progress and ignition toggle
+- Live repository filters and project search (press `/` to focus search)
+- Project dossier dialogs with links to public repositories
+- Scroll-reveal motion that is an enhancement only; content stays visible if JavaScript is unavailable
+- Reduced-motion support, keyboard focus states and no build step
 
-- Cinematic intro sequence with a skip control
-- Custom generated automotive hero image
-- Original ornamental gold chain corner SVGs (no fashion-house logos)
-- Kabeer's portrait in an editorial frame
-- Scroll reveal, progress bar, hover spotlight, subtle desktop tilt and parallax
-- Interactive ignition toggle
-- Searchable and filterable project archive with accessible project dossier dialogs
-- Direct public GitHub links
-- Responsive mobile navigation and reduced-motion support
-- Pure HTML, CSS and JavaScript: no build step required
+## Deploy with GitHub Pages
+1. Extract this ZIP.
+2. Upload the **contents** of this folder to the root of your `kabeer-portfolio` repository, replacing `index.html`, `styles.css`, `script.js`, and `README.md`. Upload the complete `assets` folder too. Keep `index.html` at repository root.
+3. Commit changes to the `main` branch.
+4. In GitHub, open **Settings → Pages**. Confirm the source is **Deploy from a branch**, branch `main`, folder `/(root)`.
+5. Wait for the latest deployment in **Actions** to finish, then hard-refresh the live page with `Ctrl + F5`.
 
-## Run locally
-
-Open `index.html` directly in a browser, or use a simple local server from this folder:
-
-```bash
-python -m http.server 8000
-```
-
-Then visit `http://localhost:8000`.
-
-## Deploy on GitHub Pages
-
-1. Upload the *contents* of this folder to the root of a public repository.
-2. Open **Settings → Pages**.
-3. Choose **Deploy from a branch**, branch `main`, folder `/(root)`, then save.
-4. Wait for the Pages workflow to finish and open the URL shown in Settings → Pages.
-
-The site is designed for the project path `https://Kabeer13.github.io/kabeer-portfolio/`. Relative asset paths are used so the same files can also be served from a different project path.
+Expected URL: https://kabeer13.github.io/kabeer-portfolio/
 
 ## Personalise
+- Portrait: replace `assets/kabeer-portrait.jpg` but keep the same name.
+- Hero image: replace `assets/hero-car.webp` but keep the same name and a wide aspect ratio.
+- Projects: edit each `.project-card` in `index.html`. Keep links, descriptions and labels accurate. The Car Decision System is labelled as in development.
+- Contact: public GitHub links are included. Add a public email address only if you want to share one.
 
-- Portrait: replace `assets/kabeer-portrait.jpg` with your own image, keeping the filename.
-- Automotive hero: replace `assets/hero-car.webp` with another image of similar wide aspect ratio, keeping the filename.
-- Project cards: update the project `<article>` elements in `index.html`. Keep each repository URL accurate and descriptions grounded in the actual code.
-- Contact: add an email or professional profile in the Contact section if you want one displayed publicly. Do not publish a phone number or home address.
-
-## Notes
-
-- Repository details are curated fallback content, so the archive does not break if an external API is unavailable.
-- Only public repository links are included. The Car Decision System is clearly labelled as in development, not a completed public repository.
-- Animations respect `prefers-reduced-motion` and the layout is responsive for smaller screens.
+This is plain HTML/CSS/JavaScript and does not need npm, a backend, API keys or a paid service.
